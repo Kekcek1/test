@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en-us">
+<html lang="ru">
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <title>Игра</title>
+  <title>Игры</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
   <link rel="icon" href="icons/icon-72x72.png" sizes="72x72" type="image/png" />
@@ -26,56 +26,73 @@
   <link rel="apple-touch-icon" href="icons/icon-512x512.png" sizes="512x512" type="image/png" />
 
   <meta name="theme-color" content="#000" />
-
-  <!-- Подключение внешнего файла стилей -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Панель навигации -->
-  <div class="navbar">
+  <header>
+    <h1>Игровой мир</h1>
+  </header>
+
+  <nav>
     <a href="index.html">Главная</a>
-    <a href="game.html">Игра</a>
-  </div>
+    <a href="game.html">Игры</a>
+  </nav>
 
-  <div id="game-container">
-    <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
-    <div id="overlayDiv"></div>
+  <div class="container">
+    <div class="info-container">
+      <h2>Игровая зона</h2>
+      <p>Погрузитесь в мир увлекательных игр и новостей игровой индустрии.</p>
+    </div>
 
-    <img id="presplash" src="web-presplash.jpg">
+    <div class="game-container">
+      <div class="game-ratio-box">
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex=-1></canvas>
+        <div id="overlayDiv"></div>
+        <img id="presplash" src="web-presplash.jpg">
+      </div>
 
-    <div id="ContextContainer">
-      <a id="ContextButton">&#8801;</a><br />
-      <div id="ContextMenu" style="display: none;">
-        <input id="ID_SavegamesImport" type="file" onchange="onSavegamesImport(this)" accept="application/zip"
-          style=display:none></input>
-        <a href="javascript:document.getElementById('ID_SavegamesImport').click();">Import Saves</a>
-        <a href="javascript:onSavegamesExport();">Export Saves</a>
-        <a href="javascript:FSDownload('/log.txt', 'text/plain');">Download Log</a>
-        <a href="https://www.renpy.org/" target="_blank">
-          Powered by Ren'Py
-        </a>
-        </span>
+      <!-- Плашка с кнопками в левом верхнем углу -->
+<!-- Плашка с кнопками в левом верхнем углу -->
+      <div id="ContextContainer">
+        <a id="ContextButton">&#8801;</a><br />
+        <div id="ContextMenu">
+          <input id="ID_SavegamesImport" type="file" onchange="onSavegamesImport(this)" accept="application/zip" style="display:none"></input>
+          <a href="javascript:document.getElementById('ID_SavegamesImport').click();">Import Saves</a>
+          <a href="javascript:onSavegamesExport();">Export Saves</a>
+          <a href="javascript:FSDownload('/log.txt', 'text/plain');">Download Log</a>
+          <a href="https://www.renpy.org/" target="_blank">Powered by Ren'Py</a>
+          <!-- Добавляем кнопку для полноэкранного режима -->
+          <a href="javascript:toggleFullscreen();">Fullscreen</a>
+        </div>
       </div>
     </div>
 
-    <div id="statusDiv" class="hidden">
-      <div id="statusTextDiv"></div>
-      <progress id="statusProgress" value="0" max="100"></progress>
+    <div class="news">
+      <h2>Новости про игры</h2>
+      <p>Здесь будут новости о играх, разработчиках и игровых событиях.</p>
     </div>
 
-    <div id="inputDiv" class="hidden">
-      <form id="inputForm">
-        <div id="inputPrompt"></div>
-        <input id="inputText" type="text">
-      </form>
+    <div class="news">
+      <h2>Новая игра от известной студии</h2>
+      <p>Известная студия выпустила новую игру, которая уже покорила миллионы игроков.</p>
     </div>
   </div>
 
-  <div id="news-container">
-    <!-- Здесь можно разместить новости или другие элементы -->
-    <h2>Новости</h2>
-    <p>Здесь будут новости или другие элементы.</p>
+  <footer>
+    <p>&copy; 2023 Книжный мир</p>
+  </footer>
+
+  <div id="statusDiv" class="hidden">
+    <div id="statusTextDiv"></div>
+    <progress id="statusProgress" value="0" max="100"></progress>
+  </div>
+
+  <div id="inputDiv" class="hidden">
+    <form id="inputForm">
+      <div id="inputPrompt"></div>
+      <input id="inputText" type="text">
+    </form>
   </div>
 
   <script>
@@ -86,6 +103,53 @@
     if (navigator.serviceWorker) {
       if (!navigator.serviceWorker.controller) {
         navigator.serviceWorker.register('./service-worker.js', { updateViaCache: 'all' });
+      }
+    }
+
+    // Обработчик для кнопки контекстного меню
+    document.getElementById('ContextButton').addEventListener('click', function() {
+      var menu = document.getElementById('ContextMenu');
+      menu.classList.toggle('visible');
+    });
+
+    function toggleFullscreen() {
+      const canvas = document.getElementById('canvas');
+
+      if (!document.fullscreenElement) {
+        if (canvas.requestFullscreen) {
+          canvas.requestFullscreen();
+        } else if (canvas.mozRequestFullScreen) { // Firefox
+          canvas.mozRequestFullScreen();
+        } else if (canvas.webkitRequestFullscreen) { // Chrome, Safari, Opera
+          canvas.webkitRequestFullscreen();
+        } else if (canvas.msRequestFullscreen) { // IE/Edge
+          canvas.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+          document.msExitFullscreen();
+        }
+      }
+    }
+
+    // Обработчик события изменения полноэкранного режима
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    function handleFullscreenChange() {
+      const contextContainer = document.getElementById('ContextContainer');
+      if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+        contextContainer.style.display = 'none';
+      } else {
+        contextContainer.style.display = 'block';
       }
     }
   </script>
