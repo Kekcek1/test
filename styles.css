@@ -4,16 +4,17 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000;
-  color: #fff;
+  color: #FFD700; /* Жёлтый текст */
   line-height: 1.6;
 }
 
 /* Шапка */
 header {
-  background-color: #000000e8;
+  background-color: #000;
   color: #FFD700;
   padding: 20px 0;
   text-align: center;
+  border-bottom: 2px solid #FFD700;
 }
 
 header h1 {
@@ -23,9 +24,10 @@ header h1 {
 
 /* Навигация */
 nav {
-  background-color: #333;
+  background-color: #111;
   padding: 10px;
   text-align: center;
+  border-bottom: 2px solid #FFD700;
 }
 
 nav a {
@@ -61,6 +63,7 @@ nav a:hover {
   background: #000;
   border-radius: 10px;
   overflow: hidden;
+  border: 2px solid #FFD700;
 }
 
 #canvas, #overlayDiv {
@@ -83,11 +86,12 @@ nav a:hover {
 
 /* Новости и информационные блоки */
 .news, .info-container {
-  background-color: #222;
+  background-color: #111;
   padding: 20px;
   margin: 20px 0;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.1);
+  border: 1px solid #FFD700;
 }
 
 .news h2, .info-container h2 {
@@ -96,18 +100,19 @@ nav a:hover {
 }
 
 .news p, .info-container p {
-  color: #ddd;
+  color: #FFD700;
 }
 
 /* Подвал */
 footer {
-  background-color: #333;
+  background-color: #111;
   color: #FFD700;
   text-align: center;
   padding: 15px 0;
   position: fixed;
   width: 100%;
   bottom: 0;
+  border-top: 2px solid #FFD700;
 }
 
 footer p {
@@ -126,28 +131,29 @@ footer p {
 #ContextButton {
   font-size: 24px;
   cursor: pointer;
-  background-color: rgb(70, 255, 252);
-  color: rgb(0, 0, 0);
+  background-color: #FFD700;
+  color: #000;
   padding: 5px 10px;
   border-radius: 5px;
 }
 
 #ContextMenu {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 10px;
   border-radius: 5px;
   margin-top: 5px;
   display: none;
+  border: 1px solid #FFD700;
 }
 
 #ContextMenu a {
-  color: white;
+  color: #FFD700;
   text-decoration: none;
   padding: 5px 0;
 }
 
 #ContextMenu a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 215, 0, 0.2);
 }
 
 /* Адаптивность */
@@ -182,5 +188,7 @@ footer p {
 @media (max-width: 480px) {
   .game-ratio-box {
     padding-top: 100%; /* Квадратное соотношение для очень маленьких экранов */
+    width: 90%; /* Уменьшаем ширину для телефонов */
+    margin: 10px auto; /* Центрируем */
   }
 }
