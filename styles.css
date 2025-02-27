@@ -4,14 +4,14 @@ body {
   margin: 0;
   padding: 0;
   background-color: #000;
-  color: #FFD700; /* Жёлтый текст */
+  color: #fff; /* Белый текст */
   line-height: 1.6;
 }
 
 /* Шапка */
 header {
   background-color: #000;
-  color: #FFD700;
+  color: #FFD700; /* Жёлтый текст */
   padding: 20px 0;
   text-align: center;
   border-bottom: 2px solid #FFD700;
@@ -31,7 +31,7 @@ nav {
 }
 
 nav a {
-  color: #FFD700;
+  color: #FFD700; /* Жёлтый текст */
   text-decoration: none;
   margin: 0 15px;
   font-size: 1.2em;
@@ -95,18 +95,18 @@ nav a:hover {
 }
 
 .news h2, .info-container h2 {
-  color: #FFD700;
+  color: #FFD700; /* Жёлтые заголовки */
   margin-top: 0;
 }
 
 .news p, .info-container p {
-  color: #FFD700;
+  color: #fff; /* Белый текст */
 }
 
 /* Подвал */
 footer {
   background-color: #111;
-  color: #FFD700;
+  color: #FFD700; /* Жёлтый текст */
   text-align: center;
   padding: 15px 0;
   position: fixed;
@@ -147,7 +147,7 @@ footer p {
 }
 
 #ContextMenu a {
-  color: #FFD700;
+  color: #FFD700; /* Жёлтый текст */
   text-decoration: none;
   padding: 5px 0;
 }
@@ -176,7 +176,7 @@ footer p {
   }
 
   .game-ratio-box {
-    padding-top: 75%; /* Изменяем соотношение сторон для маленьких экранов */
+    padding-top: 56.25%; /* Сохраняем соотношение 16:9 */
   }
 
   #ContextContainer {
@@ -187,8 +187,15 @@ footer p {
 
 @media (max-width: 480px) {
   .game-ratio-box {
-    padding-top: 100%; /* Квадратное соотношение для очень маленьких экранов */
+    padding-top: 75%; /* Уменьшаем высоту для телефонов */
     width: 90%; /* Уменьшаем ширину для телефонов */
     margin: 10px auto; /* Центрируем */
+  }
+}
+
+@media (orientation: landscape) and (max-width: 768px) {
+  .game-ratio-box {
+    padding-top: 50%; /* Уменьшаем высоту для повёрнутых экранов */
+    width: 80%; /* Уменьшаем ширину для повёрнутых экранов */
   }
 }
